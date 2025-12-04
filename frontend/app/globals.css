@@ -29,5 +29,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  /* font-family: sora; */
+  font-family: var(--font-sora), sans-serif;
 }
