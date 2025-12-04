@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Wallet, LogOut, User } from "lucide-react";
 import { usePrivy } from "@privy-io/react-auth";
+import { WalletConnect } from "./WalletConnect";
 
 export function Navbar() {
   const { ready, authenticated, user, login, logout } = usePrivy();
@@ -30,41 +31,7 @@ export function Navbar() {
             Arc Network Payroll
           </h1>
         </div>
-        <div className="flex items-center space-x-4">
-          {authenticated && user ? (
-            <div className="flex items-center space-x-3">
-              {/* User Info */}
-              <div className="flex items-center space-x-2">
-                <User className="h-4 w-4 text-gray-500" />
-                <span className="text-sm text-gray-600">
-                  {walletAddress && formatAddress(walletAddress)}
-                </span>
-              </div>
-
-              {/* Disconnect Button */}
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleDisconnect}
-                className="gap-2"
-              >
-                <LogOut className="h-4 w-4" />
-                Disconnect
-              </Button>
-            </div>
-          ) : (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleConnect}
-              className="gap-2"
-              disabled={!ready}
-            >
-              <Wallet className="h-4 w-4" />
-              {ready ? "Connect Wallet" : "Loading..."}
-            </Button>
-          )}
-        </div>
+        <WalletConnect />
       </div>
     </div>
   );

@@ -14,34 +14,22 @@ export function Providers({ children }: ProvidersProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <PrivyProvider
-        appId={
-          process.env.NEXT_PUBLIC_PRIVY_APP_ID || ""
-        }
+        appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID || ""}
         config={{
           appearance: {
             theme: "light",
             accentColor: "#0667D2",
-            logo: undefined,
           },
           embeddedWallets: {
-            createOnLogin: "users-without-wallets",
-          },
-          loginMethods: ["wallet", "email", "sms"],
-          supportedChains: [
-            {
-              id: 1,
-              name: "Ethereum",
-              network: "homestead",
-              nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
-              rpcUrls: {
-                default: { http: ["https://ethereum.publicnode.com"] },
-                public: { http: ["https://ethereum.publicnode.com"] },
-              },
-              blockExplorers: {
-                default: { name: "Etherscan", url: "https://etherscan.io" },
-              },
+            ethereum: {
+              createOnLogin: "users-without-wallets",
             },
-          ],
+            // Explicitly disable Solana
+            solana: {
+              createOnLogin: "off",
+            },
+          },
+          loginMethods: ["wallet", "email"],
         }}
       >
         {children}
