@@ -14,6 +14,12 @@ export default function DashboardPage() {
     args: ["0x03A71968491d55603FFe1b11A9e23eF013f75bCF"],
   });
 
+  const { data: totalEmployees } = useReadContract({
+    address: "0x03A71968491d55603FFe1b11A9e23eF013f75bCF",
+    abi: PayrollContractABi,
+    functionName: "employeeAddresses",
+  });
+
   return (
     <div className="p-8 bg-[#114277] h-screen">
       <div className="mb-8">
@@ -46,7 +52,7 @@ export default function DashboardPage() {
             <Users className="h-4 w-4 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-900">24</div>
+            <div className="text-2xl font-bold text-gray-900">{totalEmployees?.toString() ?? "Loading.."}</div>
             <p className="text-xs text-gray-500 mt-1">+3 new this month</p>
           </CardContent>
         </Card>

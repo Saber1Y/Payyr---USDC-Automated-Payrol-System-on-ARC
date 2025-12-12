@@ -109,7 +109,7 @@ export default function EmployeesPage() {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 bg-[#114277] h-screen text-black">
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Employees</h1>
@@ -249,7 +249,7 @@ export default function EmployeesPage() {
 
       {/* Edit Employee Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px text-black">
           <DialogHeader>
             <DialogTitle>Edit Employee</DialogTitle>
             <DialogDescription>

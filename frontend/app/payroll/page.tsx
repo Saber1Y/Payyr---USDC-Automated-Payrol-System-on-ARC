@@ -89,7 +89,7 @@ export default function PayrollPage() {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 bg-[#114277] h-screen">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Payroll</h1>
         <p className="text-gray-600 mt-2">
@@ -261,7 +261,7 @@ export default function PayrollPage() {
       </div>
 
       {/* Payroll History */}
-      <Card>
+      <Card className="text-black">
         <CardHeader>
           <CardTitle>Payroll History</CardTitle>
         </CardHeader>
