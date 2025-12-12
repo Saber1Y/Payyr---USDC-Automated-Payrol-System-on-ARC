@@ -4,12 +4,12 @@ import "./globals.css";
 import { Sidebar } from "@/components/sidebar";
 import { Navbar } from "@/components/navbar";
 import { Providers } from "@/components/providers";
+import { WagmiProviders } from "@/config/WagmiProviders";
 
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
 });
-
 
 export const metadata: Metadata = {
   title: "USDC Payroll System - Arc Network",
@@ -23,20 +23,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${sora.variable} antialiased bg-gray-50`}
-      >
-        <Providers>
-          <div className="flex h-screen">
-            <Sidebar />
-            <div className="flex flex-1 flex-col overflow-hidden">
-              <Navbar />
-              <main className="flex-1 overflow-x-hidden overflow-y-auto">
-                {children}
-              </main>
+      <body className={`${sora.variable} antialiased bg-gray-50`}>
+        <WagmiProviders>
+          <Providers>
+            <div className="flex h-screen">
+              <Sidebar />
+              <div className="flex flex-1 flex-col overflow-hidden">
+                <Navbar />
+                <main className="flex-1 overflow-x-hidden overflow-y-auto">
+                  {children}
+                </main>
+              </div>
             </div>
-          </div>
-        </Providers>
+          </Providers>
+        </WagmiProviders>
       </body>
     </html>
   );

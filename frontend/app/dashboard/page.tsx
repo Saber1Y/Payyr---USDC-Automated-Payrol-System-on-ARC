@@ -1,7 +1,19 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DollarSign, Users, Calendar, TrendingUp } from "lucide-react";
+import { useReadContract } from "wagmi";
+import PayrollContractABi from "../../lib/abi/PayrollManager.json";
 
 export default function DashboardPage() {
+
+  const { data: balance } = useReadContract({
+    address: "0x03A71968491d55603FFe1b11A9e23eF013f75bCF",
+    abi: PayrollContractABi,
+    functionName: "getBalance",
+    args: ["0x03A71968491d55603FFe1b11A9e23eF013f75bCF"],
+  });
+
   return (
     <div className="p-8 bg-[#114277] h-screen">
       <div className="mb-8">
@@ -21,7 +33,7 @@ export default function DashboardPage() {
             <DollarSign className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-900">$125,430.00</div>
+            <div className="text-2xl font-bold text-gray-900">{balance?.toString()}</div>
             <p className="text-xs text-green-600 mt-1">+2.1% from last month</p>
           </CardContent>
         </Card>
