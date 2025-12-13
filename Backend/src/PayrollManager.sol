@@ -122,6 +122,7 @@ contract PayrollManager is AccessControl, ReentrancyGuard, Pausable {
     /**
      * @dev Get contract USDC balance
      */
+    
     function getBalance() external view returns (uint256) {
         return usdc.balanceOf(address(this));
     }

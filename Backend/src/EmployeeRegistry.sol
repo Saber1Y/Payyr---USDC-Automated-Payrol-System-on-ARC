@@ -3,17 +3,21 @@ pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
+error InvalidEmployeeAddress();
+error NameCannotBeEmpty();
+
 /**
  * @title EmployeeRegistry
  * @dev Contract for managing employee data and permissions
  */
+
 contract EmployeeRegistry is AccessControl {
     bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
     bytes32 public constant HR_ROLE = keccak256("HR_ROLE");
 
     struct Employee {
         string name;
-        uint256 salary; // Monthly salary in USDC (with 6 decimals)
+        uint256 salary; 
         bool isActive;
         uint256 startDate;
         string role;
@@ -43,13 +47,21 @@ contract EmployeeRegistry is AccessControl {
      * @param _salary Monthly salary in USDC
      * @param _role Employee role/position
      */
+
     function addEmployee(
         address _employee,
         string calldata _name,
         uint256 _salary,
         string calldata _role
     ) external onlyRole(HR_ROLE) {
-        require(_employee != address(0), "Invalid employee address");
+
+        if (_employee == address(0)) {
+            revert InvalidEmployeeAddress();
+        }
+        // require(_employee != address(0), "Invalid employee address");
+        if (bytes(_name).length < 0) {
+            revert NameCannotBeEmpty();
+        }
         require(bytes(_name).length > 0, "Name cannot be empty");
         require(_salary > 0, "Salary must be greater than 0");
         require(!employees[_employee].isActive, "Employee already exists");
@@ -76,6 +88,7 @@ contract EmployeeRegistry is AccessControl {
      * @param _salary New salary
      * @param _role New role
      */
+
     function updateEmployee(
         address _employee,
         string calldata _name,

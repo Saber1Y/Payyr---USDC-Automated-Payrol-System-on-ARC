@@ -23,8 +23,8 @@ export function WalletConnect() {
 
   if (isAuthenticated && hasWallet) {
     return (
-      <div className="flex items-center gap-4">
-        <div className="flex flex-col">
+      <div className="flex items-center gap-2 md:gap-4">
+        {/* <div className="flex flex-col">
           <span className="text-sm text-gray-600">
             Connected {isEmbeddedWallet ? "Embedded" : "External"} Wallet
           </span>
@@ -34,7 +34,7 @@ export function WalletConnect() {
           {user?.email && (
             <span className="text-xs text-gray-500">{user.email.address}</span>
           )}
-        </div>
+        </div> */}
         <button
           onClick={disconnectWallet}
           className="px-4 py-2 text-sm bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
@@ -46,7 +46,7 @@ export function WalletConnect() {
   }
 
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-col md:flex-row gap-2">
       <button
         onClick={async () => {
           setIsConnecting(true);
