@@ -1,12 +1,11 @@
-version: "3"
 services:
   graph-node:
     image: graphprotocol/graph-node
     ports:
-      - "8000:8000"   # GraphQL
-      - "8001:8001"   # Admin
-      - "8020:8020"   # Indexer
-      - "8030:8030"   # Metrics
+      - "8000:8000" # GraphQL
+      - "8001:8001" # Admin
+      - "8020:8020" # Indexer
+      - "8030:8030" # Metrics
     depends_on:
       - postgres
       - ipfs
@@ -20,13 +19,14 @@ services:
       GRAPH_LOG: info
 
   postgres:
-    image: postgres
+    image: postgres:17
     ports:
       - "5433:5432"
     environment:
       POSTGRES_USER: graph
       POSTGRES_PASSWORD: letmein
       POSTGRES_DB: graph
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
 
   ipfs:
     image: ipfs/kubo:latest
